@@ -1,0 +1,6 @@
+﻿# Godot-specific ignores
+.godot/
+*.tmp
+*.zip
+*Zone.Identifier
+export_presets.cfg

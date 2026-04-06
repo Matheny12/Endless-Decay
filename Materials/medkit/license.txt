@@ -1,0 +1,11 @@
+Model Information:
+* title:	Fallout_Medkit
+* source:	https://sketchfab.com/3d-models/fallout-medkit-39aa6117594a4e29a93eb840e297df7b
+* author:	kythulu (https://sketchfab.com/kythulu)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Fallout_Medkit" (https://sketchfab.com/3d-models/fallout-medkit-39aa6117594a4e29a93eb840e297df7b) by kythulu (https://sketchfab.com/kythulu) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

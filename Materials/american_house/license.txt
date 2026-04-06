@@ -1,0 +1,11 @@
+Model Information:
+* title:	American House
+* source:	https://sketchfab.com/3d-models/american-house-87b24124ea0a4d8aa2af285efc9fcafa
+* author:	CGMeller (https://sketchfab.com/CGMeller)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "American House" (https://sketchfab.com/3d-models/american-house-87b24124ea0a4d8aa2af285efc9fcafa) by CGMeller (https://sketchfab.com/CGMeller) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

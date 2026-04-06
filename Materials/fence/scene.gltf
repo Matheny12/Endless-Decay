@@ -1,0 +1,451 @@
+{
+  "accessors": [
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 2906,
+      "max": [
+        0.2252534180879593,
+        0.13879144191741943,
+        5.663829326629639
+      ],
+      "min": [
+        -0.2252534180879593,
+        -0.13879144191741943,
+        -0.0014667510986328125
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 34872,
+      "componentType": 5126,
+      "count": 2906,
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 2906,
+      "max": [
+        0.9979116320610046,
+        0.9979116320610046
+      ],
+      "min": [
+        0.0020938264206051826,
+        0.002835275372490287
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "componentType": 5125,
+      "count": 9036,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 69744,
+      "componentType": 5126,
+      "count": 2906,
+      "max": [
+        0.2252534180879593,
+        0.13879144191741943,
+        5.663829326629639
+      ],
+      "min": [
+        -0.2252534180879593,
+        -0.13879144191741943,
+        -0.0014667510986328125
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 104616,
+      "componentType": 5126,
+      "count": 2906,
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 23248,
+      "componentType": 5126,
+      "count": 2906,
+      "max": [
+        0.9979116320610046,
+        0.9979116320610046
+      ],
+      "min": [
+        0.0020938264206051826,
+        0.002835275372490287
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 36144,
+      "componentType": 5125,
+      "count": 9036,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 139488,
+      "componentType": 5126,
+      "count": 6282,
+      "max": [
+        0.014082164503633976,
+        0.009077943861484528,
+        1.5235346555709839
+      ],
+      "min": [
+        -2.517458200454712,
+        -0.02419724129140377,
+        0.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "byteOffset": 214872,
+      "componentType": 5126,
+      "count": 6282,
+      "max": [
+        1.0,
+        0.9238944053649902,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "byteOffset": 46496,
+      "componentType": 5126,
+      "count": 6282,
+      "max": [
+        0.96608567237854,
+        0.9969726800918579
+      ],
+      "min": [
+        0.002150064567103982,
+        0.002972708083689213
+      ],
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 72288,
+      "componentType": 5125,
+      "count": 28992,
+      "type": "SCALAR"
+    }
+  ],
+  "asset": {
+    "extras": {
+      "author": "Conception3D (https://sketchfab.com/Conception3D)",
+      "license": "CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)",
+      "source": "https://sketchfab.com/3d-models/fence-70d8d6ad84cd4cab9bbf1e5f9671ad92",
+      "title": "Fence"
+    },
+    "generator": "Sketchfab-15.87.0",
+    "version": "2.0"
+  },
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 188256,
+      "name": "floatBufferViews",
+      "target": 34963
+    },
+    {
+      "buffer": 0,
+      "byteLength": 96752,
+      "byteOffset": 188256,
+      "byteStride": 8,
+      "name": "floatBufferViews",
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteLength": 290256,
+      "byteOffset": 285008,
+      "byteStride": 12,
+      "name": "floatBufferViews",
+      "target": 34962
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 575264,
+      "uri": "scene.bin"
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "name": "PillarStraight_mat",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.20507873639031693,
+          0.20507873639031693,
+          0.20507873639031693,
+          1.0
+        ],
+        "metallicFactor": 0.9,
+        "roughnessFactor": 0.11199999999999999
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "PillarStraight_mat.001",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.20466371881636736,
+          0.20466371881636736,
+          0.20466371881636736,
+          1.0
+        ],
+        "metallicFactor": 0.8998634450667244,
+        "roughnessFactor": 0.11229002900383867
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Fence_mat.002",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.20507873639031693,
+          0.20507873639031693,
+          0.20507873639031693,
+          1.0
+        ],
+        "metallicFactor": 0.9,
+        "roughnessFactor": 0.11199999999999999
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Pillar_Straight_lp_PillarStraight_mat_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 1,
+            "POSITION": 0,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Pillar_Straight_lp.001_PillarStraight_mat.001_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 5,
+            "POSITION": 4,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Fence_lp.001_Fence_mat.002_0",
+      "primitives": [
+        {
+          "attributes": {
+            "NORMAL": 9,
+            "POSITION": 8,
+            "TEXCOORD_0": 10
+          },
+          "indices": 11,
+          "material": 2,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "children": [
+        1
+      ],
+      "matrix": [
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.220446049250313e-16,
+        -1.0,
+        0.0,
+        0.0,
+        1.0,
+        2.220446049250313e-16,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Sketchfab_model"
+    },
+    {
+      "children": [
+        2
+      ],
+      "matrix": [
+        0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.009999999776482582,
+        0.0,
+        0.0,
+        -0.009999999776482582,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "e2b16a131fb34d74ba07bbe81e51432f.fbx"
+    },
+    {
+      "children": [
+        3,
+        5,
+        7
+      ],
+      "name": "RootNode"
+    },
+    {
+      "children": [
+        4
+      ],
+      "matrix": [
+        28.32847785949707,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.1387405772205543e-06,
+        -28.32847785949699,
+        0.0,
+        0.0,
+        28.32847785949699,
+        2.1387405772205543e-06,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Pillar_Straight_lp"
+    },
+    {
+      "mesh": 0,
+      "name": "Pillar_Straight_lp_PillarStraight_mat_0"
+    },
+    {
+      "children": [
+        6
+      ],
+      "matrix": [
+        28.32847785949707,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        2.1387405772205543e-06,
+        -28.32847785949699,
+        0.0,
+        0.0,
+        28.32847785949699,
+        2.1387405772205543e-06,
+        0.0,
+        -250.43038940429688,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Pillar_Straight_lp.001"
+    },
+    {
+      "mesh": 1,
+      "name": "Pillar_Straight_lp.001_PillarStraight_mat.001_0"
+    },
+    {
+      "children": [
+        8
+      ],
+      "matrix": [
+        100.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        -2.8212996916465727e-05,
+        -99.99999999999602,
+        0.0,
+        0.0,
+        99.99999999999602,
+        -2.8212996916465727e-05,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "name": "Fence_lp.001"
+    },
+    {
+      "mesh": 2,
+      "name": "Fence_lp.001_Fence_mat.002_0"
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Sketchfab_Scene",
+      "nodes": [
+        0
+      ]
+    }
+  ]
+}

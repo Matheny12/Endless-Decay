@@ -1,0 +1,11 @@
+Model Information:
+* title:	Desert Hut
+* source:	https://sketchfab.com/3d-models/desert-hut-ad1f6c952cc342258f13177131361fdc
+* author:	john.mcfaddenfinlayson (https://sketchfab.com/john.mcfaddenfinlayson)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Desert Hut" (https://sketchfab.com/3d-models/desert-hut-ad1f6c952cc342258f13177131361fdc) by john.mcfaddenfinlayson (https://sketchfab.com/john.mcfaddenfinlayson) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,8 @@
+Model Information:
+* title:	7-11 convenience store
+* source:	https://sketchfab.com/3d-models/7-11-convenience-store-797ab2c504d54979a217574efec34b45
+* author:	Pasha (https://sketchfab.com/Pasha.)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

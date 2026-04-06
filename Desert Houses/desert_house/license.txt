@@ -1,0 +1,11 @@
+Model Information:
+* title:	Desert House
+* source:	https://sketchfab.com/3d-models/desert-house-dfd9dd93d3ed4e8eae1b1b4c2659857e
+* author:	Avgust9 (https://sketchfab.com/Avgust9)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Desert House" (https://sketchfab.com/3d-models/desert-house-dfd9dd93d3ed4e8eae1b1b4c2659857e) by Avgust9 (https://sketchfab.com/Avgust9) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
