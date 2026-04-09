@@ -1,5 +1,6 @@
 extends VBoxContainer
 
+@onready var loading_label = $LoadingLabel
 @onready var ip_label = $IPLabel
 @onready var player_list = $ScrollContainer/PlayerList
 @onready var start_button = $StartButton
@@ -37,6 +38,8 @@ func _ready() -> void:
 			multiplayer.connected_to_server.connect(_on_connected_to_host)
 			
 	update_player_list()
+	if loading_label:
+		loading_label.hide()
 
 func _on_connected_to_host():
 	sync_true_name_to_host.rpc_id(1, GlobalStats.my_peer_id, GlobalStats.player_name)
@@ -84,6 +87,9 @@ func _on_start_button_pressed():
 			"room_id": GlobalStats.hosted_lobby_id,
 			"map": GlobalStats.map_name
 		}))
+	if loading_label:
+		loading_label.show()
+	if loading_label: loading_label.text = "Loading Map..."
 
 func _on_quit_to_menu_pressed():
 	if ws and ws.get_ready_state() == WebSocketPeer.STATE_OPEN:

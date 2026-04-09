@@ -9,11 +9,12 @@ extends Node3D
 @onready var server_status = $UI/ServerStatus
 
 const MAX_DISTANCE = 300.0
+
 const Player = preload("res://Scenes/player.tscn")
-var zombie = load("res://Scenes/zombie.tscn")
+const Zombie = preload("res://Scenes/zombie.tscn")
+const BossScene = preload("res://zombie_boss.tscn")
+
 var instance
-var player = load("res://Scenes/player.tscn")
-var boss_scene = load("res://zombie_boss.tscn")
 var boss_active: bool = false
 var boss_kill_threshold: int = 20
 var spawn_limit
@@ -77,8 +78,9 @@ func _on_enemy_hit():
 	hitmarker.visible = false
 
 func spawn_zombie(pos: Vector3):
-	var new_zombie = zombie.instantiate()
+	var new_zombie = Zombie.instantiate()
 	new_zombie.add_to_group("zombie")
+	new_zombie.add_to_group("enemy")
 	new_zombie.zombie_hit.connect(_on_enemy_hit)
 	add_child(new_zombie, true) 
 	new_zombie.global_position = pos
@@ -141,8 +143,9 @@ func spawn_boss():
 	else:
 		chosen_spawn_pos = spawns.get_children().pick_random().global_position
 	boss_active = true
-	var boss = boss_scene.instantiate()
+	var boss = BossScene.instantiate()
 	boss.add_to_group("zombie")
+	boss.add_to_group("enemy")
 	if boss.has_signal("zombie_hit"):
 		boss.zombie_hit.connect(_on_enemy_hit)
 	boss.tree_exited.connect(_on_boss_defeated)
@@ -166,7 +169,7 @@ func start_exit_timer(scene_path: String):
 	get_tree().change_scene_to_file(scene_path)
 	
 func spawn_player(id: int, p_name: String, spawn_pos: Vector2):
-	var p_scene = preload("res://Scenes/player.tscn").instantiate()
+	var p_scene = Player.instantiate()
 	p_scene.name = str(id)
 	p_scene.global_position = spawn_pos
 	add_child(p_scene)

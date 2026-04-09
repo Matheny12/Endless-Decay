@@ -237,29 +237,41 @@ func _input(event):
 
 @rpc("any_peer","call_local")
 func _shoot_rifle():
-	if rifle_mag>0 and not is_reloading:
+	if rifle_mag > 0 and not is_reloading:
 		if not gun_anim.is_playing():
-			rifle_mag-=1
+			rifle_mag -= 1
 			gun_anim.play("shoot")
 			rifle_sound.play()
-			instance=bullet_trail.instantiate()
-			var new_bullet=bullet.instantiate()
+			instance = bullet_trail.instantiate()
+			var new_bullet = bullet.instantiate()
 			get_parent().add_child(new_bullet)
-			new_bullet.global_transform=gun_barrel.global_transform
-			if aim_ray.is_colliding() and aim_ray.get_collider().is_in_group("enemy"):
-				var target=aim_ray.get_collider()
-				var z_node = target
-				while z_node != null and not z_node.has_method("set_last_attacker"):
-					z_node = z_node.get_parent()
-				if z_node != null:
-					z_node.set_last_attacker.rpc(str(self.get_path()))
-				instance.init(gun_barrel.global_position,aim_ray.get_collision_point())
-				var rifle_base_damage=2.0
-				var total_damage=rifle_base_damage*damage_multiplier
-				target.rifle_hit(total_damage)
-				if is_multiplayer_authority():
-					GameEvents.zombie_hit.emit()
-	elif rifle_mag<=0:
+			new_bullet.global_transform = gun_barrel.global_transform
+			aim_ray.force_raycast_update()
+			if aim_ray.is_colliding():
+				var collider = aim_ray.get_collider()
+				print("Hit: ", collider.name)
+				var target = null
+				if collider.is_in_group("enemy"): target = collider
+				elif collider.get_parent().is_in_group("enemy"): target = collider.get_parent()
+				elif collider.get_parent().get_parent() and collider.get_parent().get_parent().is_in_group("enemy"):
+					target = collider.get_parent().get_parent()
+				if target != null:
+					var total_damage = 2.0 * damage_multiplier
+					if target.has_method("rifle_hit"):
+						target.rifle_hit.rpc_id(1, total_damage)
+					var z_node = target
+					while z_node != null and not z_node.has_method("set_last_attacker"):
+						z_node = z_node.get_parent()
+					if z_node != null:
+						z_node.set_last_attacker.rpc(str(self.get_path()))
+					instance.init(gun_barrel.global_position, aim_ray.get_collision_point())
+					if is_multiplayer_authority():
+						GameEvents.zombie_hit.emit()
+				else:
+					instance.init(gun_barrel.global_position, aim_ray.get_collision_point())
+			else:
+				instance.init(gun_barrel.global_position, aim_ray.global_position + (-aim_ray.global_transform.basis.z * 100))
+	elif rifle_mag <= 0:
 		if is_multiplayer_authority():
 			_reload.rpc()
 
@@ -275,22 +287,19 @@ func _shoot_shotgun():
 			get_parent().add_child(new_bullet2)
 			new_bullet2.global_transform=shotgun_barrel.global_transform
 			velocity-=head.transform.basis.z*SHOTGUN_RECOIL
-			if aim_ray.is_colliding() and aim_ray.get_collider().is_in_group("enemy"):
-				var target=aim_ray.get_collider()
-				var z_node = target
-				while z_node != null and not z_node.has_method("set_last_attacker"):
-					z_node = z_node.get_parent()
-				if z_node != null:
-					z_node.set_last_attacker.rpc(str(self.get_path()))
-				instance.init(shotgun_barrel.global_position,aim_ray.get_collision_point())
-				var shotgun_base_damage=4.0
-				var total_damage=shotgun_base_damage*damage_multiplier
-				target.shotgun_hit(total_damage)
-				if is_multiplayer_authority():
-					GameEvents.zombie_hit.emit()
-			else:
-				get_parent().add_child(instance)
-	elif shotgun_mag<=0:
+			if aim_ray.is_colliding():
+				var collider = aim_ray.get_collider()
+				if collider.is_in_group("enemy") or collider.get_parent().is_in_group("enemy"):
+					var target = collider if collider.is_in_group("enemy") else collider.get_parent()
+					instance = bullet_trail.instantiate()
+					instance.init(shotgun_barrel.global_position, aim_ray.get_collision_point())
+					get_parent().add_child(instance)
+					var total_damage = 4.0 * damage_multiplier
+					if target.has_method("shotgun_hit"):
+						target.shotgun_hit.rpc_id(1, total_damage)
+					if is_multiplayer_authority():
+						GameEvents.zombie_hit.emit()
+	elif shotgun_mag <= 0:
 		if is_multiplayer_authority():
 			_reload.rpc()
 
@@ -314,7 +323,7 @@ func _swing_bat():
 					z_node.set_last_attacker.rpc(str(self.get_path()))
 				var bat_base_damage=1.0
 				var total_damage=bat_base_damage*damage_multiplier
-				target.rifle_hit(total_damage)
+				target.rifle_hit.rpc_id(1, total_damage)
 				if is_multiplayer_authority():
 					GameEvents.zombie_hit.emit()
 				bat_hit.play()
@@ -474,6 +483,7 @@ func force_quit_to_everyone():
 					if "scoreboard" in p and is_instance_valid(p.scoreboard):
 						p.update_scoreboard()
 						p.scoreboard.show()
+	GlobalStats.leave_matchmaking_lobby()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused = false
 	var world = get_tree().current_scene
@@ -530,37 +540,38 @@ func handle_zombie_hover():
 		last_zombie_hovered=null
 
 @rpc("any_peer","call_local")
-func _switch_weapon(weapon_name:String):
-	if is_switching_weapons:return
-	is_switching_weapons=true
-	is_reloading=false
-	if rifle.visible:
-		guns_anim.play("LowerRifle")
-		await guns_anim.animation_finished
-		rifle.visible=false
-	elif shotgun.visible:
-		guns_anim.play("LowerShotgun")
-		await guns_anim.animation_finished
-		shotgun.visible=false
-	elif bat.visible:
-		guns_anim.play("LowerBat")
-		await guns_anim.animation_finished
-		bat.visible=false
+func _switch_weapon(weapon_name: String):
+	if is_switching_weapons: return
+	is_switching_weapons = true
+	is_reloading = false
+	var lower_anim = ""
+	if rifle.visible: lower_anim = "LowerRifle"
+	elif shotgun.visible: lower_anim = "LowerShotgun"
+	elif bat.visible: lower_anim = "LowerBat"
+	if lower_anim != "" and guns_anim.has_animation(lower_anim):
+		guns_anim.play(lower_anim)
+		await get_tree().create_timer(0.4).timeout 
+	rifle.visible = false
+	shotgun.visible = false
+	bat.visible = false
+	var raise_anim = ""
 	match weapon_name:
 		"rifle":
-			rifle.visible=true
+			rifle.visible = true
 			switch_sound.play()
-			guns_anim.play("RaiseRifle")
+			raise_anim = "RaiseRifle"
 		"shotgun":
-			shotgun.visible=true
+			shotgun.visible = true
 			switch_sound.play()
-			guns_anim.play("RaiseShotgun")
+			raise_anim = "RaiseShotgun"
 		"bat":
-			bat.visible=true
+			bat.visible = true
 			bat_switch.play()
-			guns_anim.play("RaiseBat")
-	await guns_anim.animation_finished
-	is_switching_weapons=false
+			raise_anim = "RaiseBat"
+	if raise_anim != "" and guns_anim.has_animation(raise_anim):
+		guns_anim.play(raise_anim)
+		await get_tree().create_timer(0.4).timeout
+	is_switching_weapons = false
 
 @rpc("any_peer","call_local")
 func add_zombie_kill():
@@ -604,6 +615,8 @@ func sync_death_status(status:bool):
 			$HealthBarSprite.visible = false
 		$MeshInstance3D.visible = false
 		$Head/Camera3D/GunPivot.visible = false
+		if has_node("Head/Camera3D/SpotLight3D"):
+			$Head/Camera3D/SpotLight3D.visible = false
 
 func _on_enemy_died(killer_path: String, amount: int):
 	if not multiplayer.is_server(): return
@@ -641,6 +654,7 @@ func end_game_for_everyone():
 					if is_instance_valid(p.scoreboard):
 						p.update_scoreboard()
 						p.scoreboard.show()
+	GlobalStats.leave_matchmaking_lobby()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var world = get_tree().current_scene
 	if world.has_method("start_exit_timer"):

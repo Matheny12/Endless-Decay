@@ -143,3 +143,19 @@ func _handle_game_packet(msg):
 func connect_to_relay(url: String, action: String):
 	pending_action = action
 	ws.connect_to_url(url)
+
+func leave_matchmaking_lobby():
+	if ws.get_ready_state() == WebSocketPeer.STATE_OPEN:
+		ws.send_text(JSON.stringify({
+			"type": "leave",
+			"room_id": hosted_lobby_id,
+			"peer_id": my_peer_id
+		}))
+	ws.close()
+	if multiplayer.multiplayer_peer != null:
+		multiplayer.multiplayer_peer.close()
+		multiplayer.multiplayer_peer = null
+	network_names.clear()
+	hosted_lobby_id = ""
+	pending_action = ""
+	godot_to_relay_map.clear()

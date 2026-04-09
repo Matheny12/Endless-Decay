@@ -1,13 +1,19 @@
-extends Node3D
+extends Area3D
 
-func _on_area_3d_body_entered(body: Node3D) -> void:
+@export var rifle_ammo_to_give: int = 30
+@export var shotgun_ammo_to_give: int = 8
+
+func _ready():
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body):
+	if not multiplayer.is_server(): 
+		return 
 	if body.is_in_group("player"):
-		print("Player detected!")
-		if "rifle_reserve" in body:
-			body.rifle_reserve += 30
-		if "shotgun_reserve" in body:
-			body.shotgun_reserve += 8
-		if get_parent():
-			get_parent().queue_free()
-		else:
-			queue_free()
+		if body.has_method("add_ammo"):
+			body.add_ammo.rpc(rifle_ammo_to_give, shotgun_ammo_to_give)
+			delete_box.rpc()
+
+@rpc("call_local", "authority", "reliable")
+func delete_box():
+	queue_free()

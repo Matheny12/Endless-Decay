@@ -77,10 +77,10 @@ func _on_settings_back_pressed():
 	self.show()
 
 func _on_quit_pressed() -> void:
-	if ws_ready:
+	if GlobalStats.ws != null and GlobalStats.ws.get_ready_state() == WebSocketPeer.STATE_OPEN:
 		GlobalStats.ws.send_text(JSON.stringify({
 			"type": "leave",
 			"room_id": GlobalStats.hosted_lobby_id
 		}))
-	GlobalStats.ws.close()
+		GlobalStats.ws.close()
 	get_tree().quit()

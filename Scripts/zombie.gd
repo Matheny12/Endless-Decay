@@ -192,3 +192,25 @@ func freeze_zombie():
 		$AnimationPlayer.pause()
 	elif has_node("AnimationTree"):
 		$AnimationTree.active = false
+		
+@rpc("any_peer", "call_local")
+func rifle_hit(damage: float):
+	if dead: return
+	health -= damage
+	health = max(0, health)
+	if is_instance_valid(health_bar): 
+		health_bar.value = health
+	emit_signal("zombie_hit")
+	if health <= 0: 
+		_zombie_die()
+
+@rpc("any_peer", "call_local")
+func shotgun_hit(damage: float):
+	if dead: return
+	health -= damage
+	health = max(0, health)
+	if is_instance_valid(health_bar): 
+		health_bar.value = health
+	emit_signal("zombie_hit")
+	if health <= 0: 
+		_zombie_die()
