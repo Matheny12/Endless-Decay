@@ -473,22 +473,21 @@ func force_quit_to_everyone():
 				GlobalStats.final_scores.append({
 					"name": display_name, "score": p.score, "kills": p.zombie_kills
 				})
-				if p.has_method("is_multiplayer_authority") and p.is_multiplayer_authority():
+				if p.is_multiplayer_authority():
 					if is_instance_valid(p.pause_menu_instance):
 						p.pause_menu_instance.queue_free()
-						p.pause_menu_instance = null
 					if p.has_node("UI"):
 						p.get_node("UI").visible = true
-						if is_instance_valid(p.stats_label): p.stats_label.visible = false
 					if "scoreboard" in p and is_instance_valid(p.scoreboard):
 						p.update_scoreboard()
 						p.scoreboard.show()
-	GlobalStats.leave_matchmaking_lobby()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().paused = false
 	var world = get_tree().current_scene
 	if world.has_method("start_exit_timer"):
 		world.start_exit_timer("res://Scenes/menu.tscn")
+	await get_tree().create_timer(15).timeout
+	GlobalStats.leave_matchmaking_lobby()
 
 func _on_continue_bonus_received():
 	if rifle.visible==true:rifle_mag+=1
@@ -654,11 +653,12 @@ func end_game_for_everyone():
 					if is_instance_valid(p.scoreboard):
 						p.update_scoreboard()
 						p.scoreboard.show()
-	GlobalStats.leave_matchmaking_lobby()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var world = get_tree().current_scene
 	if world.has_method("start_exit_timer"):
 		world.start_exit_timer("res://Scenes/you_died.tscn")
+	await get_tree().create_timer(15).timeout
+	GlobalStats.leave_matchmaking_lobby()
 
 func update_scoreboard():
 	for child in scoreboard_list.get_children():

@@ -41,12 +41,13 @@ func _ready() -> void:
 		add_player(1)
 		fetch_ip_address()
 	else:
-		player_loaded.rpc_id(1)
+		get_tree().process_frame.connect(func(): player_loaded.rpc_id(1), CONNECT_ONE_SHOT)
 
 @rpc("any_peer", "call_local", "reliable")
 func player_loaded():
 	if multiplayer.is_server():
 		var peer_id = multiplayer.get_remote_sender_id()
+		await get_tree().create_timer(2).timeout 
 		print("Server: Spawning body for Joiner ", peer_id)
 		add_player(peer_id)
 
@@ -55,7 +56,8 @@ func add_player(peer_id):
 		return
 	var player_instance = Player.instantiate()
 	player_instance.name = str(peer_id)
-	players_folder.add_child(player_instance, true) 
+	player_instance.add_to_group("player") 
+	players_folder.add_child(player_instance)
 
 func _process(_delta: float) -> void:
 	pass
